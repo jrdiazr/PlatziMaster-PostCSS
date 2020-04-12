@@ -1,0 +1,98 @@
+@import "./body.css";
+@import "./home-layout.css";
+@import "./sidebar.css";
+@import "./featuring.css";
+@import "./logo.css";
+@import "./myPlayList.css";
+@import "./playListFriends.css";
+@import "./prymaryList.css";
+
+:root {
+	--darkColor: black;
+	--lightColor: white;
+	--warningColor: red;
+	--button: {
+		border: 1px solid var(--lightColor);
+		border-radius: 5px;
+		background: var(--darckColor);
+		color: var(--lightColor);
+		padding: 0.5em 2em;
+		text-transform: uppercase;
+		cursor: pointer;
+		font-size: 14px;
+		border-bottom: 5px solid var(--lightColor);
+	}
+	--viewportHeight: 50vh;
+}
+
+.btn {
+	@apply --button;
+}
+
+.btn.warning {
+	background: var(--warningColor);
+	display: none;
+}
+
+@custom-selector :--checkeable .checkbox-label, .radio-label;
+@custom-selector :--check-control .checkbox, .radio;
+@custom-selector :--modifier :hover, :active;
+
+:--check-control {
+	display: none;
+}
+:--checkeable {
+	cursor: pointer;
+	user-select: none;
+	padding: 3px 7px;
+	border: 1px solid color(red b(10%));
+	border-bottom: 3px solid red;
+	color: gray(100);
+	font-size: 12px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+:--checkeable:--modifier {
+	background-color: black;
+	color: white;
+}
+
+.checkbox:checked + .primaryPlaylist-list {
+	display: none;
+}
+
+/*@custom-media --small screen and (max-width: 768px);*/
+@custom-media --extra-small (width < 480px);
+@custom-media --small screen and (width < 768px);
+@custom-media --medium screen and (width >= 768px);
+@custom-media --large screen and (width >= 1024px);
+
+@media (--small) {
+	body {
+		border: 10px solid blue;
+	}
+	.home {
+		height: auto;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 150px;
+		grid-template-areas:
+			"primary"
+			"sidebar"
+			"featuring";
+	}
+	.featuring {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 150px;
+	}
+}
+
+@media (--extra-small) {
+	body {
+		border: 10px solid orange;
+	}
+}
